@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.test</groupId>
+    <artifactId>nexus</artifactId>
+    <name>Maven-Nexus-Connection-Test</name>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <description>Let's Connect Nexus-Maven</description>
+
+    <!--Repository register-->
+    <repositories>
+        <repository>
+            <id>central</id>
+            <name>Nexus</name>
+            <url>http://localhost:8081/repository/Maven-Test-Group/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    <!--plugin Repository Register-->
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <id>default-install</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>install</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <localRepositoryPath>${user.home}</localRepositoryPath>
+                    <file>${project.build.directory}/${project.artifactId}-${project.version}.${project.packaging}</file>
+                    <groupId>temp.repo.${project.groupId}</groupId>
+                    <artifactId>${project.artifactId}</artifactId>
+                    <packaging>${project.packaging}</packaging>
+                    <version>${project.version}</version>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <!--Deploy Repository Register-->
+    <distributionManagement>
+        <repository>
+            <id>nexus-release</id>
+            <name>Nexus</name>
+            <url>http://localhost:8081/repository/Maven-Test-Release/</url>
+        </repository>
+
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>Nexus</name>
+            <url>http://localhost:8081/repository/Maven-Test-Snapshot/</url>
+        </snapshotRepository>
+    </distributionManagement>
+</project>

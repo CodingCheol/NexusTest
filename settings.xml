@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+    <localRepository>${user.home}/temp/repo</localRepository>
+    <interactiveMode>true</interactiveMode>
+    <offline>false</offline>
+
+    <servers>
+        <server>
+            <id>central</id>
+            <username>wcjeong</username>
+            <password>1234!@</password>
+        </server>
+        <server>
+            <id>nexus-release</id>
+            <username>wcjeong</username>
+            <password>1234!@</password>
+        </server>
+        <server>
+            <id>nexus-snapshots</id>
+            <username>wcjeong</username>
+            <password>1234!@</password>
+        </server>
+    </servers>
+    <mirrors>
+        <mirror>
+            <id>test</id>
+            <name>Nexus</name>
+            <url>http://localhost:8081/repository/Maven-Test-Group/</url>
+            <mirrorOf>*</mirrorOf>
+        </mirror>
+    </mirrors>
+</settings>
